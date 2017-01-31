@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Text Files";
+
+    //var strPath = AppDomain.CurrentDomain.BaseDirectory;
+    //var strPathTextFiles = strPath + "TextFiles";
+
+    //var textFiles = Directory.GetFiles(strPathTextFiles, "*.txt")
+    //                         .Select(Path.GetFileName)
+    //                         .ToArray();
+
+    var textFiles = Directory.GetFiles(Server.MapPath("~/TextFiles"));
+
+}
+
+<h2>Index</h2>
+
+<ul>
+
+    @foreach (var i in textFiles)
+    {
+        var strFileName = @i.Substring(@i.LastIndexOf('\\') + 1);
+        strFileName = strFileName.Substring(0, strFileName.Length - 4);
+       
+        // Query string
+        <li>@Html.ActionLink(strFileName, "Display", new { id = strFileName })</li>
+
+        //<li>@Html.ActionLink(strFileName, "Display", new { id = strFileName }, "Files")</li>
+        //<li>@Html.ActionLink(strFileName, "Display", new { id = strFileName }, "Views\\Files")</li>
+
+        //<li>@Html.ActionLink(strFileName, "FileContent", "Files")</li>
+        //"FileContent", "Files")</li>
+    }
+
+</ul>
+
